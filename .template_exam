@@ -1,0 +1,19 @@
+const exam = {
+  subject: "TIN HỌC",
+  subjectCode: "MH3201202",
+  examCode: "MH3201202_DE01",
+  duration: 60,
+  questions: [
+    {
+      id: 1,
+      level: "NB",
+      content: "Khi hệ điều hành Windows bị lỗi...",
+      answers: [
+        { content: "Thay ổ đĩa cứng mới", isCorrect: false },
+        { content: "Cài MS Office", isCorrect: false },
+        { content: "Cài lại Windows", isCorrect: true },
+        { content: "Đăng nhập lại", isCorrect: false }
+      ]
+    }
+  ]
+};
