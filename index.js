@@ -12,7 +12,7 @@ async function run() {
         fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    const exams = generateMultipleExams(exam, 5); // tạo 5 đề
+    const exams = generateMultipleExams(exam, 3); // tạo 5 đề
     for (const ex of exams) {
         const doc = createExamDoc(ex);
 
@@ -20,6 +20,12 @@ async function run() {
 
         // Lưu file vào thư mục outputs
         const filePath = path.join(outputDir, `DeThi_${ex.examCode}.docx`);
+        
+        // Xóa file nếu đã tồn tại
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+        
         fs.writeFileSync(filePath, buffer);
 
         // Tạo phiếu trả lời tương ứng với câu hỏi đã shuffle của từng đề

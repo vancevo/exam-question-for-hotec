@@ -103,10 +103,9 @@ export function createExamDoc(exam) {
             children.push(
                 new Paragraph({
                     children: [
-                        new TextRun('[<$>] '),
+                        new TextRun({ text: '[<$>] ', color: ans.isCorrect ? 'FF0000' : '000000' }), // 🔥 màu đỏ
                         new TextRun({
-                            text: ans.content,
-                            color: ans.isCorrect ? 'FF0000' : '000000' // 🔥 màu đỏ
+                            text: ans.content
                         })
                     ]
                 })
