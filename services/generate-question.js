@@ -82,7 +82,7 @@ export function createExamDoc(exam) {
         })
     );
 
-    children.push(new Paragraph(' '));
+    children.push(new Paragraph(' ') );
 
     // ===== QUESTIONS =====
     exam.questions.forEach((q) => {
@@ -91,8 +91,12 @@ export function createExamDoc(exam) {
             new Paragraph({
                 children: [
                     new TextRun({
-                        text: `Câu ${q.id} [<${q.level}>]: ${q.content}`,
+                        text: `Câu ${q.id} [<${q.level}>]: `,
                         bold: true
+                    }),
+                    new TextRun({
+                        text: q.content,
+                        bold: false
                     })
                 ]
             })
@@ -103,7 +107,10 @@ export function createExamDoc(exam) {
             children.push(
                 new Paragraph({
                     children: [
-                        new TextRun({ text: '[<$>] ', color: ans.isCorrect ? 'FF0000' : '000000' }), // 🔥 màu đỏ
+                        new TextRun({ 
+                            text: '[<$>] ', 
+                            color: ans.isCorrect ? 'FF0000' : '000000'
+                        }),
                         new TextRun({
                             text: ans.content
                         })
@@ -126,8 +133,24 @@ export function createExamDoc(exam) {
     return new Document({
         sections: [
             {
+                properties: {
+                    page: {
+                        size: {
+                            orientation: 'portrait'
+                        }
+                    }
+                },
                 children
             }
-        ]
+        ],
+        styles: {
+            default: {
+                document: {
+                    run: {
+                        size: 24 // 12pt default cho toàn bộ document
+                    }
+                }
+            }
+        }
     });
 }
